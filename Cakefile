@@ -12,7 +12,7 @@ xctest_framework = target do |target|
   target.platform = :osx
   target.deployment_target = "10.11"
 
-  target.include_files << "XCTest/*.*"
+  target.include_files = ['XCTest/**/*.*']
 
   target.headers_build_phase do |phase|
     phase.public = Rake::FileList.new "XCTest/*.h"
