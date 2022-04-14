@@ -1,3 +1,5 @@
+require 'rake/file_list'
+
 project.name = "XCTest"
 
 project.class_prefix = "XCT"
@@ -11,6 +13,10 @@ xctest_framework = target do |target|
   target.deployment_target = "10.11"
 
   target.include_files << "XCTest/*.*"
+
+  target.headers_build_phase do |phase|
+    phase.public = Rake::FileList.new "XCTest/*.h"
+  end
 
   target.all_configurations.each do |c|
     c.product_bundle_identifier = "#{bundle_id_prefix}.xctest"
