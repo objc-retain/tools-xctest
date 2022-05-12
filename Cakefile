@@ -23,8 +23,12 @@ xctest_framework = target do |target|
   end
 end
 
-application_for :osx, 10.11 do |target|
+test_runner_tool = target do |target|
   target.name = "GSXCTestRunner"
+  target.type = :command_line_tool
+  target.platform = :osx
+  target.deployment_target = "10.11"
+  
   target.all_configurations.each { |c| c.product_bundle_identifier = "#{bundle_id_prefix}.gsxctestrunner"}
 
   target.include_files << "GSXCTestRunner.*"
